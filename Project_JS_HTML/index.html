@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="navbar_container">
+                <ul class="navbar_links">
+                    <li><a href="index.html">Strona Główna</a></li>
+                    <li><a href="ai.html">Zapytaj AI</a></li>
+                    <li><a href="graph.html">Zbuduj Wykres</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="main-title">Funkcja kwadratowa</div>
+    <div class="tags">
+        <img src="images/interaktywna.png" alt="#interaktywna">
+        <img src="images/nauka.png" alt="#nauka">
+    </div>
+
+    <div class="container">
+        
+        <div class="box box-1">
+            
+            <h2 class="carousel-title active">Postać ogólna</h2>
+            <h2 class="carousel-title">Postać kanoniczna</h2>
+            <h2 class="carousel-title">Postać iloczynowa</h2>
+            <div class="carousel-content">
+                <p class="carousel-text active">f(x) = ax² + bx + c, gdzie a, b, c ∈ R i a ≠ 0</p>
+                <p class="carousel-text">f(x)=a(x−p)²+q, gdzie a, p, q ∈ R i a ≠ 0</p>
+                <p class="carousel-text">f(x)=a(x−x1)(x−x2), gdzie: a ≠ 0</p>
+            </div>
+            <div class="carousel">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+
+       
+        <div class="box box-2">
+            <h2>Równanie dwukwadratowe</h2>
+            <p>Równanie postaci ax + bx2+ c = 0, gdzie a, b, c ∈R oraz a ≠0, nazywamy <b>równaniem dwukwadratowym</b></p>
+            <div class="dots"></div>
+        </div>
+
+       
+        <div class="box box-3">
+            <h2 class="carousel-title active">Dynamiczna pomoc</h2>
+            <h2 class="carousel-title">Co robi współczynnik a?</h2>
+            <h2 class="carousel-title">Co robi współczynnik b?</h2>
+            <h2 class="carousel-title">Co robi współczynnik c?</h2>
+             <p class="carousel-text active">Co robi a?<br>Co robi b?<br>Co robi c?</p>
+             <p class="carousel-text ">Współczynnik a decyduje o kształcie paraboli</p>
+             <p class="carousel-text ">Współczynnik b określa położenie wierzchołka wzdłuż osi x</p>
+             <p class="carousel-text ">Współczynnik c decyduje położenie paraboli wzdłuż osi y</p>
+            <div class="carousel">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="containerRight">
+        <div class="timer">
+            <p class="timerClock">00:00</p>
+        </div>
+        <div class="timerUnderPanel">
+            <p>Czas mija, a ty nadal nie zacząłeś uczyć się funkcji kwadratowej</p>
+        </div>
+
+       
+        <div class="mini-panels">
+           
+                <button class="askAI" onclick="window.location.href='ai.html';">Zapytaj AI</button>
+                <button class="buildGraph" onclick="window.location.href='graph.html';">Zbuduj wykres</button>
+            
+            
+            <div class="center-panels">
+                <div class="mini-panel vertex-panel">
+                    <h2>Wierzchołek paraboli</h2>
+                    <p>x<sub>v</sub> = -b / 2a<br>y<sub>v</sub> = f(x<sub>v</sub>)</p>
+                </div>
+                <div class="mini-panel delta-panel">
+                    <h2>Wyróżnik Δ </h2>
+                    <div class="carousel-content">
+                        <p class="carousel-text active">Δ = b² - 4ac</p>
+                        <p class="carousel-text">Δ > 0, dwa rozwiązania</p>
+                        <p class="carousel-text">Δ = 0, jedno rozwiązanie</p>
+                        <p class="carousel-text">Δ < 0, zero rozwiązań</p>
+                    </div>
+                  
+                    <div class="carousel">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="mini-panel visual-example-panel">
+                <h2 class="carousel-title active">Przykłady wizualne</h2>
+                <h2 class="carousel-title "> a > 0</h2>
+                <h2 class="carousel-title "> a < 0</h2>
+                <div class="content-wrapper">
+                        <p class="carousel-text active">
+                            a > 0<br>
+                            a < 0
+                        </p>
+                        <p class="carousel-text" id="second">a > 0, to oznacza, że parabola jest otwarta w górę</p>
+                        <p class="carousel-text" id="third">a < 0, to oznacza, że parabola jest otwarta w dół</p>
+                        <img src="images/vector2.png" alt="Vector2" class="carousel-visual-example-image right active">
+                        <img src="images/a_0.png" alt="Vector1" class="carousel-visual-example-image center">
+                        <img src="images/a_01.png" alt="Vector3" class="carousel-visual-example-image center">
+                </div>
+                <div class="carousel">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080;">
+            <iframe 
+              src="https://share.synthesia.io/embeds/videos/bbd1e717-212d-42e6-9613-55087578c9a1" 
+              loading="lazy" 
+              title="Synthesia video player - Funkcja kwadratowa" 
+              allowfullscreen 
+              allow="encrypted-media; fullscreen;" 
+              style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;">
+            </iframe>
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="video-hint">
+        <div class="hint-text">
+            Zanim obejrzysz notatki na stronie, obejrzyj wideo! <br />
+            Wideo jest stworzone za pomocą <strong>&copySynthesia</strong>
+        </div>
+        <div class="video-icon">
+          <button id="openVideo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px">
+              <path d="M17 10.5V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2v-4.5l4 4v-11l-4 4z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+</body>
+</html>

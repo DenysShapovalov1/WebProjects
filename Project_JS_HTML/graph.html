@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph of Quadratic and Linear Equations</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="timer.js"></script>
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 96px;
+        }
+
+        #graph-container {
+            width: 989px;
+            height: 721px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--box-bg-color);
+            box-shadow: 18px 18px 19.7px 10px var(--shadow-color);
+        }
+        .hidden {
+            display: none;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            width: 378px;
+            margin-left: auto;
+            margin-top: 50px;
+        }
+
+        select, input[type="text"], button{
+            width: 378px;
+            height: 84px;
+            font-size: 22px;
+            border-radius: 34px;
+            padding: 10px;
+            box-sizing: border-box;
+
+        }
+
+        select {
+            background-color: var(--box-bg-color);
+            font-family: 'Kiwi Maru';
+            color: var(--header-color);
+            outline: none;
+            transition: border-color 0.3s ease;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%2322272E" viewBox="0 0 20 20"><path d="M5.25 8.75L10 13.5l4.75-4.75"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            box-shadow: 5px 11px 7.5px 0 var(--shadow-color);
+        }
+
+        select:focus {
+            border-color: var(--header-color);
+            color: var(--header-color);
+            box-shadow: 5px 11px 7.5px 0 var(--shadow-color);
+            
+        }
+
+         .buildBtn{
+            background-color: var(--box-bg-color);
+            color: var(--header-color);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 5px 11px 7.5px 0 var(--shadow-color);
+        }
+
+         .clearBtn{
+            background-color: var(--header-color);
+            color: var(--box-bg-color);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 5px 11px 7.5px 0 var(--shadow-color);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        input[type="text"] {
+            border: 1px solid #ccc;
+            background-color: var(--box-bg-color);
+            color: var(--header-color);
+            margin-bottom: 20px;
+            box-shadow: 5px 11px 7.5px 0 var(--shadow-color);
+        }
+
+        input[type="checkbox"] {
+            margin: 0; 
+            width: 20px; 
+            height: 20px;
+            cursor: pointer;
+            order: -1;
+            margin-right: 20px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            font-size: 22px; 
+            color: var(--header-color); 
+        }
+
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .containerRight {
+            margin-bottom: 30px;
+        }
+       
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="navbar_container">
+                <ul class="navbar_links">
+                    <li><a href="index.html">Strona Główna</a></li>
+                    <li><a href="ai.html">Zapytaj AI</a></li>
+                    <li><a href="graph.html">Zbuduj Wykres</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+  
+        <div class="main-title">Pobuduj wykres</div>
+        <div class="containerRight">
+            <div class="timer">
+                <p class="timerClock">00:00</p>
+            </div>
+            <div class="timerUnderPanel">
+                <p>Czas na zrobienie wykresu</p>
+            </div>
+                </div>
+            
+
+
+    <div class="content">
+        <div id="graph-container">
+            <p>Brak wykresu do wyświetlenia. Wprowadź parametry i kliknij "Pobuduj".</p>
+        </div>
+        <div class="form-container">
+            <select id="equationType">
+                <option value="quadratic">Kwadratowa (y = ax² + bx + c)</option>
+                <option value="linear">Liniowa (y = mx + b)</option>
+            </select>
+
+            <div id="quadraticInputs">
+                <input type="text" id="a" placeholder="Wprowadź a">
+                <input type="text" id="b" placeholder="Wprowadź b">
+                <input type="text" id="c" placeholder="Wprowadź c">
+            </div>
+
+           
+
+            <div id="linearInputs" class="form-section hidden">
+                <input type="text" id="m" placeholder="Wprowadź m">
+                <input type="text" id="bLinear" placeholder="Wprowadź b">
+            </div>
+
+           
+
+            <div id="fullEquationInput" class="form-section hidden">
+                <input type="text" id="fullEquation" placeholder="np. y = 1x² - 2x + 1 lub np. y = 2x + 3">
+            </div>
+
+            <div class="form-section">
+                <label>
+                    <input type="checkbox" id="fullEquationCheckbox"> Mam pełne równanie 
+                </label>
+            </div>
+
+            <button onclick="plotGraph()" class="buildBtn">Pobuduj</button>
+            <button onclick="clearInputs()" class="clearBtn">Wyczyść</button>
+        </div>
+       
+        
+    </div>
+
+    <script>
+        const equationTypeSelect = document.getElementById('equationType');
+        const fullEquationCheckbox = document.getElementById('fullEquationCheckbox');
+        const quadraticInputs = document.getElementById('quadraticInputs');
+        const linearInputs = document.getElementById('linearInputs');
+        const fullEquationInput = document.getElementById('fullEquationInput');
+
+        fullEquationCheckbox.addEventListener('change', () => {
+            if (fullEquationCheckbox.checked) {
+                quadraticInputs.classList.add('hidden');
+                linearInputs.classList.add('hidden');
+                fullEquationInput.classList.remove('hidden');
+            } else {
+                updateFormVisibility();
+            }
+        });
+
+        equationTypeSelect.addEventListener('change', updateFormVisibility);
+
+        function updateFormVisibility() {
+            if (fullEquationCheckbox.checked) return;
+
+            const selectedType = equationTypeSelect.value;
+
+            if (selectedType === 'quadratic') {
+                quadraticInputs.classList.remove('hidden');
+                linearInputs.classList.add('hidden');
+            } else {
+                quadraticInputs.classList.add('hidden');
+                linearInputs.classList.remove('hidden');
+            }
+
+            fullEquationInput.classList.add('hidden');
+        }
+
+        function clearInputs() {
+            document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+            fullEquationCheckbox.checked = false;
+            updateFormVisibility();
+        }
+
+        function plotGraph() {
+            const graphContainer = document.getElementById('graph-container');
+            graphContainer.innerHTML = ''; 
+
+            const xValues = [];
+            const yValues = [];
+            let trace;
+
+            if (fullEquationCheckbox.checked) {
+                const fullEquation = document.getElementById('fullEquation').value;
+
+                if (equationTypeSelect.value === 'quadratic') {
+                    const coefficients = parseQuadraticEquation(fullEquation);
+                    if (!coefficients) return;
+                    const [a, b, c] = coefficients;
+
+                    for (let x = -10; x <= 10; x += 0.1) {
+                        xValues.push(x);
+                        yValues.push(a * x * x + b * x + c);
+                    }
+
+                    trace = {
+                        x: xValues,
+                        y: yValues,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: `y = ${a}x² + ${b}x + ${c}`,
+                        line: { color: 'blue' }
+                    };
+                } else {
+                    const coefficients = parseLinearEquation(fullEquation);
+                    if (!coefficients) return;
+                    const [m, b] = coefficients;
+
+                    for (let x = -10; x <= 10; x += 0.1) {
+                        xValues.push(x);
+                        yValues.push(m * x + b);
+                    }
+
+                    trace = {
+                        x: xValues,
+                        y: yValues,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: `y = ${m}x + ${b}`,
+                        line: { color: 'red' }
+                    };
+                }
+            } else {
+                if (equationTypeSelect.value === 'quadratic') {
+                    const a = parseFloat(document.getElementById('a').value) || 0;
+                    const b = parseFloat(document.getElementById('b').value) || 0;
+                    const c = parseFloat(document.getElementById('c').value) || 0;
+
+                    for (let x = -10; x <= 10; x += 0.1) {
+                        xValues.push(x);
+                        yValues.push(a * x * x + b * x + c);
+                    }
+
+                    trace = {
+                        x: xValues,
+                        y: yValues,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: `y = ${a}x² + ${b}x + ${c}`,
+                        line: { color: 'blue' }
+                    };
+                } else {
+                    const m = parseFloat(document.getElementById('m').value) || 0;
+                    const b = parseFloat(document.getElementById('bLinear').value) || 0;
+
+                    for (let x = -10; x <= 10; x += 0.1) {
+                        xValues.push(x);
+                        yValues.push(m * x + b);
+                    }
+
+                    trace = {
+                        x: xValues,
+                        y: yValues,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: `y = ${m}x + ${b}`,
+                        line: { color: 'red' }
+                    };
+                }
+            }
+
+            const layout = {
+                title: 'Graph',
+                xaxis: { title: 'x' },
+                yaxis: { title: 'y' },
+                showlegend: true
+            };
+
+            Plotly.newPlot(graphContainer, [trace], layout);
+        }
+
+        function parseQuadraticEquation(equation) {
+            equation = equation.replace(/\s+/g, '');
+            const regex = /(-?\d*\.?\d*)x\^2([+-]\d*\.?\d*)x([+-]\d*\.?\d*)/;
+            const match = equation.match(regex);
+
+            if (match) {
+                const a = parseFloat(match[1]) || 1;
+                const b = parseFloat(match[2]) || 0;
+                const c = parseFloat(match[3]) || 0;
+                return [a, b, c];
+            } else {
+                alert('Nieprawidłowy format równania kwadratowego. Proszę użyć „y = ax² + bx + c”.');
+                return null;
+            }
+        }
+
+        function parseLinearEquation(equation) {
+            equation = equation.replace(/\s+/g, '');
+            const regex = /(-?\d*\.?\d*)x([+-]\d*\.?\d*)/;
+            const match = equation.match(regex);
+
+            if (match) {
+                const m = parseFloat(match[1]) || 1;
+                const b = parseFloat(match[2]) || 0;
+                return [m, b];
+            } else { 
+                alert('Nieprawidłowy format równania liniowego. Proszę użyć „y = mx + b”.');
+                return null;
+            }
+        }
+    </script>
+</body>
+</html>
